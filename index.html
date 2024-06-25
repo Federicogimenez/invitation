@@ -60,15 +60,15 @@
     </section>
 
     <section class="galery">
-        <img src="./assets/img/imagen_2.png" alt="sergio1">
-        <img src="./assets/img/imagen_2.png" alt="sergio2">
-        <img src="./assets/img/imagen_3.png" alt="sergio3">
-        <img src="./assets/img/imagen_4.png" alt="sergio4">
-        <img src="./assets/img/imagen_5.png" alt="sergio5">
-        <img src="./assets/img/imagen_6.png" alt="sergio6">
-        <img src="./assets/img/imagen_7.png" alt="sergio7">
-        <img src="./assets/img/imagen_8.png" alt="sergio8">
-        <img src="./assets/img/imagen_9.png" alt="sergio9">
+        <img src="./assets/img/imagen_1.png" alt="sergio1" class="fade-in-element">
+        <img src="./assets/img/imagen_2.png" alt="sergio2" class="fade-in-element">
+        <img src="./assets/img/imagen_3.png" alt="sergio3" class="fade-in-element">
+        <img src="./assets/img/imagen_4.png" alt="sergio4" class="fade-in-element">
+        <img src="./assets/img/imagen_5.png" alt="sergio5" class="fade-in-element">
+        <img src="./assets/img/imagen_6.png" alt="sergio6" class="fade-in-element">
+        <img src="./assets/img/imagen_7.png" alt="sergio7" class="fade-in-element">
+        <img src="./assets/img/imagen_8.png" alt="sergio8" class="fade-in-element">
+        <img src="./assets/img/imagen_9.png" alt="sergio9" class="fade-in-element">
     </section>
 
     <section class="drink-info">
@@ -113,13 +113,20 @@
     </section>
 
     <script>
+
+
+
+
+
         let days = document.querySelector('#timer_days'),
                 hours = document.querySelector('#timer_hours'),
                 minutes = document.querySelector('#timer_minutes'),
                 seconds = document.querySelector('#timer_seconds'),
                 happyBirthday = new Date('July 13, 2024 00:00:05');
                 // happyBirthday = new Date('Jun 20, 2024 02:17:05'),
-                timer = document.querySelector('.timer');
+                timer = document.querySelector('.timer'),
+                fadeInElement = document.querySelectorAll('.fade-in-element');
+
 
                 if (happyBirthday.getDate() == new Date().getDate() ) {
                     while(timer.firstChild) {
@@ -138,6 +145,31 @@
                     minutes.textContent = new Date(result).getMinutes();
                     seconds.textContent = new Date(result).getSeconds();
             }, 1000);
+
+
+            function createObserver() {
+                let observer;
+
+                let options = {
+                    // root: null,
+                    rootMargin: "0px",
+                    // threshold: .4,
+                };
+
+                observer = new IntersectionObserver(handleIntersect, options);
+
+                fadeInElement.forEach((e)=>{
+                    observer.observe(e);
+                })
+            }
+
+            const handleIntersect = (entries)=>{
+                entries.forEach((entry) => {
+                    console.log(entry.target.classList.add('papero'));
+                    }
+                )
+            }
+            createObserver()
     </script>
 </body>
 </html>
